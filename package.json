@@ -1,8 +1,8 @@
 {
   "name": "tron-create-address",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Tron address & private key generator",
-  "main": "build/account.js",
+  "main": "index.ts",
   "directories": {
     "lib": "lib",
     "test": "test"
