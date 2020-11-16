@@ -1,5 +1,5 @@
 {
-  "name": "tron-wallet",
+  "name": "tron-create-address",
   "version": "0.1.0",
   "description": "Tron address & private key generator",
   "main": "build/account.js",
@@ -16,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:kushkamisha/tron-wallet"
+    "url": "git@github.com:kushkamisha/tron-create-address"
   },
   "keywords": [
     "tron",
@@ -27,7 +27,7 @@
   ],
   "author": "Misha Kushka",
   "license": "MIT",
-  "homepage": "https://github.com/kushkamisha/tron-wallet#readme",
+  "homepage": "https://github.com/kushkamisha/tron-create-address#readme",
   "devDependencies": {
     "@types/bs58": "^4.0.1",
     "@types/chai": "^4.2.14",
