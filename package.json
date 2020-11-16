@@ -27,6 +27,7 @@
   ],
   "author": "Misha Kushka",
   "license": "MIT",
+  "homepage": "https://github.com/kushkamisha/tron-wallet#readme",
   "devDependencies": {
     "@types/bs58": "^4.0.1",
     "@types/chai": "^4.2.14",
