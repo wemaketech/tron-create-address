@@ -1,22 +1,10 @@
 import { encode } from 'bs58'
-import { curve, ec as EC } from 'elliptic'
+import { ec as EC } from 'elliptic'
 import { keccak_256 } from 'js-sha3'
-import { Base64 } from './base64'
 import hash from 'hash.js'
-import BN = require('bn.js')
-
-interface BasePointXY extends curve.base.BasePoint {
-  x: BN
-  y: BN
-}
+import { BasePointXY } from '../types'
 
 const ADDRESS_PREFIX = '41'
-
-const base64DecodeFromString = (string64: string) => {
-  const b = new Base64()
-  const decodeBytes = b.decodeToByteArray(string64)
-  return decodeBytes
-}
 
 const isHexChar = (c: string): 0 | 1 => {
   if ((c >= 'A' && c <= 'F') || (c >= 'a' && c <= 'f') || (c >= '0' && c <= '9')) return 1
@@ -94,14 +82,6 @@ export const getBase58CheckAddress = (addressBytes: number[]): string => {
   let checkSum = hash1.slice(0, 4)
   checkSum = addressBytes.concat(checkSum)
   return encode(checkSum)
-}
-
-//return address by Base58Check String, prKeyBytes is base64String
-export const getBase58CheckAddressFromPrKeyBase64String = (prKeyBase64String: string): string => {
-  const prKeyBytes = base64DecodeFromString(prKeyBase64String)
-  const pubBytes = getPubKeyFromPrKey(prKeyBytes)
-  const addressBytes = computeAddress(pubBytes)
-  return getBase58CheckAddress(addressBytes)
 }
 
 //return pubkey by 65 bytes, prKeyBytes is byte[]
