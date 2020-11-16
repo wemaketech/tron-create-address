@@ -1,7 +1,7 @@
 {
-  "name": "tron-create-address",
+  "name": "tron-wallet",
   "version": "0.1.0",
-  "description": "",
+  "description": "Tron address & private key generator",
   "main": "build/account.js",
   "directories": {
     "lib": "lib",
@@ -13,6 +13,10 @@
     "lint": "npx eslint '*/**/*.{ts,tsx}'",
     "lint:fix": "npx eslint '*/**/*.{ts,tsx}' --fix",
     "format": "prettier --write \"**/*.ts\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:kushkamisha/tron-wallet"
   },
   "keywords": [
     "tron",
