@@ -1,0 +1,22 @@
+{
+  "env": {
+    "browser": true,
+    "es2020": true,
+    "mocha": true
+  },
+  "globals": {
+    "contract": "readonly",
+    "artifacts": "readonly"
+  },
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint", "prettier"],
+  "extends": ["plugin:@typescript-eslint/recommended", "prettier"],
+  "parserOptions": {
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "rules": {
+    "prettier/prettier": ["error"],
+    "semi": ["error", "never"]
+  }
+}
