@@ -14,7 +14,7 @@ export const computeAddress = (publicKey: string): string => {
   let pubBytes = [...Buffer.from(publicKey, 'hex')]
   if (pubBytes.length === 65) pubBytes = pubBytes.slice(1)
 
-  const hash = keccak_256(pubBytes).toString()
+  const hash = keccak_256(pubBytes)
   let addressHex = hash.substring(24)
   addressHex = ADDRESS_PREFIX + addressHex
 

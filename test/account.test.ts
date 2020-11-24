@@ -8,9 +8,10 @@ describe('Create address & private key', () => {
   beforeEach(() => ({ address } = generateAccount()))
 
   it('Should get an address from a public key correctry', () => {
+    // const prKey = '46a3665750540cb4ff9b3ecb62b6aba3f30af7a136d383abd9428499e82fb8ef'
     const pubKey =
-      '04fd045ae283a2501e845fb043dd731a837f1ffdb8410405be50f48162a3ced69d591c2c399e1e3a8c89dbcb9c2a23197e5e3fbbb256a0a0faedbb3aa202d9e7ce'
-    const expectedAddress = 'TUXQhnQqnmJFGummvrsB8jYa6EfL233qJo'
+      '042f5329b55e25601a5ab7cefa6fd75437a013d8174559cb2cf45ee71e3f1fa3238b671b2e95343f38368f1f4eedc5d1474ccb61726a610b07584a149cf3725cc6'
+    const expectedAddress = 'TD7J8GZpBCe5GdoA3QCVDhpfS2myvRvHD9'
     const address = getBase58CheckAddress(computeAddress(pubKey))
 
     expect(address).to.equal(expectedAddress)
