@@ -1,8 +1,8 @@
-import { encode } from 'bs58'
+import crypto from 'crypto'
 import { ec as EC } from 'elliptic'
 import { keccak_256 } from 'js-sha3'
-import hash from 'hash.js'
 import { BasePointXY } from '../types'
+import { encode58 } from './base58'
 
 const ADDRESS_PREFIX = '41'
 
@@ -45,7 +45,7 @@ const hexStr2byteArray = (str: string): number[] => {
 }
 
 //gen Ecc prKey for bytes
-export const genPrKey = (): number[] => {
+export const genPrKey = (): string => {
   const ec = new EC('secp256k1')
   const key = ec.genKeyPair()
   const prKey = key.getPrivate()
@@ -54,34 +54,33 @@ export const genPrKey = (): number[] => {
     prKeyHex = '0' + prKeyHex
   }
 
-  return hexStr2byteArray(prKeyHex)
+  return prKeyHex
 }
 
 //return address by bytes, pubBytes is byte[]
-const computeAddress = (pubBytes: number[]): number[] => {
-  if (pubBytes.length === 65) {
-    pubBytes = pubBytes.slice(1)
-  }
+const computeAddress = (pubBytes: number[]): string => {
+  if (pubBytes.length === 65) pubBytes = pubBytes.slice(1)
 
   const hash = keccak_256(pubBytes).toString()
   let addressHex = hash.substring(24)
   addressHex = ADDRESS_PREFIX + addressHex
-  return hexStr2byteArray(addressHex)
+
+  return addressHex
 }
 
 //return address by bytes, prKeyBytes is byte[]
-export const getAddressFromPrKey = (prKeyBytes: number[]): number[] => {
+export const getAddressFromPrKey = (privateKey: string): string => {
+  const prKeyBytes = [...Buffer.from(privateKey, 'hex')]
   const pubBytes = getPubKeyFromPrKey(prKeyBytes)
   return computeAddress(pubBytes)
 }
 
-//return address by Base58Check String,
-export const getBase58CheckAddress = (addressBytes: number[]): string => {
-  const hash0 = SHA256(addressBytes)
-  const hash1 = SHA256(hash0)
-  let checkSum = hash1.slice(0, 4)
-  checkSum = addressBytes.concat(checkSum)
-  return encode(checkSum)
+export const getBase58CheckAddress = (address: string): string => {
+  const hash = sha256(sha256(address))
+  const checkSum = hash.substr(0, 8)
+  const fullAddress = Buffer.from(address + checkSum, 'hex')
+
+  return encode58(fullAddress)
 }
 
 //return pubkey by 65 bytes, prKeyBytes is byte[]
@@ -107,8 +106,4 @@ const getPubKeyFromPrKey = (prKeyBytes: number[]) => {
   return pubkeyBytes
 }
 
-//return 32 bytes
-const SHA256 = (msgBytes: number[]) => {
-  const msgHash = hash.sha256().update(msgBytes).digest('hex')
-  return hexStr2byteArray(msgHash)
-}
+export const sha256 = (msg: string): string => crypto.createHash('sha256').update(Buffer.from(msg, 'hex')).digest('hex')

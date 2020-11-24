@@ -1,6 +1,6 @@
 {
   "name": "tron-create-address",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "Tron address & private key generator",
   "main": "build/lib/account.js",
   "types": "build/lib/account.d.ts",
@@ -48,9 +48,7 @@
     "typescript": "^4.0.5"
   },
   "dependencies": {
-    "bs58": "^4.0.1",
     "elliptic": "^6.5.3",
-    "hash.js": "^1.1.7",
     "js-sha3": "^0.8.0"
   },
   "bugs": {
