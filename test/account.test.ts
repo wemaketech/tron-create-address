@@ -1,16 +1,17 @@
 import { expect } from 'chai'
 import { generateAccount } from '../lib/account'
 import { decode58 } from '../lib/base58'
-import { getAddressFromPrKey, getBase58CheckAddress, sha256 } from '../lib/crypto'
+import { computeAddress, getBase58CheckAddress, sha256 } from '../lib/crypto'
 
 describe('Create address & private key', () => {
   let address: string
   beforeEach(() => ({ address } = generateAccount()))
 
-  it('Should get an address from a private key correctry', () => {
-    const prKey = 'E013356F33092E98A136B7C1F849B68534A0E0D5DC45745FFF57AF93BC76457A'
-    const expectedAddress = 'TBcXhSqaeJGebiCbc1nbhPFF6A6teS36sU'
-    const address = getBase58CheckAddress(getAddressFromPrKey(prKey))
+  it('Should get an address from a public key correctry', () => {
+    const pubKey =
+      '04fd045ae283a2501e845fb043dd731a837f1ffdb8410405be50f48162a3ced69d591c2c399e1e3a8c89dbcb9c2a23197e5e3fbbb256a0a0faedbb3aa202d9e7ce'
+    const expectedAddress = 'TUXQhnQqnmJFGummvrsB8jYa6EfL233qJo'
+    const address = getBase58CheckAddress(computeAddress(pubKey))
 
     expect(address).to.equal(expectedAddress)
   })
