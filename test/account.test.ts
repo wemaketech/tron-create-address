@@ -22,15 +22,15 @@ describe('Create address & private key', () => {
   })
 
   it('Address starts with `T`', () => {
-    expect(address.substr(0, 1)).to.equal('T')
+    expect(address.substring(0, 1)).to.equal('T')
   })
 
   it('Checksum check', () => {
     const decodedAddr = decode58(address).toString('hex')
-    const checkSum = decodedAddr.substr(-8)
-    const pure = decodedAddr.substr(0, decodedAddr.length - 8)
+    const checkSum = decodedAddr.substring(decodedAddr.length - 8)
+    const pure = decodedAddr.substring(0, decodedAddr.length - 8)
     const hash = sha256(sha256(pure))
 
-    expect(hash.substr(0, 8)).to.equal(checkSum)
+    expect(hash.substring(0, 8)).to.equal(checkSum)
   })
 })

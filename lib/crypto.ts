@@ -23,7 +23,7 @@ export const computeAddress = (publicKey: string): string => {
 
 export const getBase58CheckAddress = (address: string): string => {
   const hash = sha256(sha256(address))
-  const checkSum = hash.substr(0, 8)
+  const checkSum = hash.substring(0, 8)
   const fullAddress = Buffer.from(address + checkSum, 'hex')
 
   return encode58(fullAddress)
