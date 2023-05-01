@@ -1,4 +1,4 @@
-# Tron Wallet
+# Tron Create Address
 
 A utility to generate Tron address and private key based on the source code of [TronWeb](https://github.com/TRON-US/tronweb).
 
